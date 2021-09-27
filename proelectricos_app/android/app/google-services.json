@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "145427085954",
+    "project_id": "appproelectricos-53634",
+    "storage_bucket": "appproelectricos-53634.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:145427085954:android:7820bf3b56d9135707529b",
+        "android_client_info": {
+          "package_name": "com.proelectricos.proelectricos_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "145427085954-ibb369sf0ldji9r6b67i58p8qd002297.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9NTflxcLWEZxNcJ5UotaC0svByl5nTBM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "145427085954-ibb369sf0ldji9r6b67i58p8qd002297.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
