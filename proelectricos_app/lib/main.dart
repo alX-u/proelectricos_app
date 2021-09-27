@@ -77,7 +77,7 @@ class HomePage extends StatelessWidget {
                         side: BorderSide(color: Colors.black),
                         borderRadius: BorderRadius.circular(50)),
                     child: Text(
-                      "Login",
+                      "Ingresar",
                       style:
                           TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
                     ),
@@ -97,7 +97,7 @@ class HomePage extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50)),
                     child: Text(
-                      "Sign up",
+                      "Registrarse",
                       style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
