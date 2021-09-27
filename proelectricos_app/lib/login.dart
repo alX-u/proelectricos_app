@@ -34,7 +34,7 @@ class LoginPage extends StatelessWidget {
                 Column(
                   children: <Widget>[
                     Text(
-                      "Login",
+                      "Iniciar Sesión",
                       style:
                           TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     ),
@@ -42,7 +42,7 @@ class LoginPage extends StatelessWidget {
                       height: 20,
                     ),
                     Text(
-                      "Login to your account",
+                      "Ingresa a tu cuenta",
                       style: TextStyle(fontSize: 15, color: Colors.grey[700]),
                     )
                   ],
@@ -51,8 +51,8 @@ class LoginPage extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 40),
                   child: Column(
                     children: <Widget>[
-                      inputFile(label: "Email"),
-                      inputFile(label: "Password", obscureText: true)
+                      inputFile(label: "Usuario:"),
+                      inputFile(label: "Contraseña:", obscureText: true)
                     ],
                   ),
                 ),
@@ -72,13 +72,13 @@ class LoginPage extends StatelessWidget {
                       minWidth: double.infinity,
                       height: 60,
                       onPressed: () {},
-                      color: Color(0xff0095FF),
+                      color: Color(0xff264F95),
                       elevation: 0,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50),
                       ),
                       child: Text(
-                        "Login",
+                        "Ingresar",
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 18,
@@ -91,9 +91,9 @@ class LoginPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text("Don't have an account?"),
+                    Text("¿No tienes cuenta aún?"),
                     Text(
-                      " Sign up",
+                      " Regístrate.",
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 18,
@@ -106,7 +106,7 @@ class LoginPage extends StatelessWidget {
                   height: 200,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage("assets/background.png"),
+                        image: AssetImage("assets/background2.png"),
                         fit: BoxFit.fitHeight),
                   ),
                 )

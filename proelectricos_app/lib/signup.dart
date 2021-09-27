@@ -32,7 +32,7 @@ class SignupPage extends StatelessWidget {
               Column(
                 children: <Widget>[
                   Text(
-                    "Sign up",
+                    "Registro de Cuenta",
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
@@ -42,17 +42,17 @@ class SignupPage extends StatelessWidget {
                     height: 20,
                   ),
                   Text(
-                    "Create an account, It's free ",
+                    "¡Crea tu cuenta!",
                     style: TextStyle(fontSize: 15, color: Colors.grey[700]),
                   )
                 ],
               ),
               Column(
                 children: <Widget>[
-                  inputFile(label: "Username"),
-                  inputFile(label: "Email"),
-                  inputFile(label: "Password", obscureText: true),
-                  inputFile(label: "Confirm Password ", obscureText: true),
+                  inputFile(label: "Nombre de Usuario:"),
+                  inputFile(label: "Email:"),
+                  inputFile(label: "Contraseña:", obscureText: true),
+                  inputFile(label: "Confirmar contraseña:", obscureText: true),
                 ],
               ),
               Container(
@@ -69,13 +69,13 @@ class SignupPage extends StatelessWidget {
                   minWidth: double.infinity,
                   height: 60,
                   onPressed: () {},
-                  color: Color(0xff0095FF),
+                  color: Color(0xff264F95),
                   elevation: 0,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50),
                   ),
                   child: Text(
-                    "Sign up",
+                    "Registrarse",
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 18,
