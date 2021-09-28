@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import "menu.dart";
+
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -71,7 +73,12 @@ class LoginPage extends StatelessWidget {
                     child: MaterialButton(
                       minWidth: double.infinity,
                       height: 60,
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MenuPage()));
+                      },
                       color: Color(0xff264F95),
                       elevation: 0,
                       shape: RoundedRectangleBorder(
