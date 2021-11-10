@@ -1,116 +1,34 @@
 // ignore_for_file: prefer_const_constructors
+//El main llama al home donde se puede iniciar sesión o registrarse
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-
-import "login.dart";
-import "signup.dart";
+import 'package:p1/ui/pages/sheets/sheet%20connection/sheets_connection_1.dart';
+import 'package:p1/ui/pages/sheets/sheet%20connection/sheets_connection_3.dart';
+import 'package:p1/ui/widgets/autenticacion/home.dart';
+import 'package:p1/domain/controller/workpage_controller.dart';
+import 'package:p1/ui/widgets/menu_general/perfilUsuario/signature_pad.dart';
+import 'package:get/get.dart';
+import 'package:p1/domain/controller/authentication_controller.dart';
+import 'package:p1/ui/widgets/menu_trabajo/menu_trabajos.dart';
+import 'package:p1/ui/widgets/autenticacion/login.dart';
+//import 'package:p1/ui/widgets/pdf/pdf_widget.dart';
 
 void main() async {
+  Get.put(AuthenticationController());
+  Get.put(WorkPageController());
   WidgetsFlutterBinding.ensureInitialized();
+  await FormSheets.init();
+  await FormSheets3.init();
   await Firebase.initializeApp().then((value) {
-    runApp(MaterialApp(
+    runApp(GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: const HomePage(),
+      getPages: [
+        GetPage(name: '/SignaturePad', page: () => SignaturePad()),
+        GetPage(name: '/SignaturePreview', page: () => SignaturePreview()),
+        GetPage(name: '/MenuTrabajos', page: () => MenuTrabajos()),
+        GetPage(name: '/LoginPage', page: () => LoginPage()),
+      ],
     ));
   });
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Container(
-          // we will give media query height
-          // double.infinity make it big as my parent allows
-          // while MediaQuery make it big as per the screen
-
-          width: double.infinity,
-          height: MediaQuery.of(context).size.height,
-          padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
-          child: Column(
-            // even space distribution
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Column(
-                children: <Widget>[
-                  Text(
-                    "¡Bienvenido!",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "Aquí puedes llenar tus formularios diarios de una forma rápida y sencilla",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.grey[700],
-                      fontSize: 15,
-                    ),
-                  )
-                ],
-              ),
-              Container(
-                height: MediaQuery.of(context).size.height / 3,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage("assets/welcome2.png"))),
-              ),
-              Column(
-                children: <Widget>[
-                  // the login button
-                  MaterialButton(
-                    minWidth: double.infinity,
-                    height: 60,
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => LoginPage()));
-                    },
-                    // defining the shape
-                    shape: RoundedRectangleBorder(
-                        side: BorderSide(color: Colors.black),
-                        borderRadius: BorderRadius.circular(50)),
-                    child: Text(
-                      "Ingresar",
-                      style:
-                          TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
-                    ),
-                  ),
-                  // creating the signup button
-                  SizedBox(height: 20),
-                  MaterialButton(
-                    minWidth: double.infinity,
-                    height: 60,
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SignupPage()));
-                    },
-                    color: Color(0xff264F95),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50)),
-                    child: Text(
-                      "Registrarse",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 18),
-                    ),
-                  )
-                ],
-              )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
 }
