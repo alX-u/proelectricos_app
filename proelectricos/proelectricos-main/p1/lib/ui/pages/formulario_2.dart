@@ -1,20 +1,21 @@
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
+import 'package:p1/domain/controller/ControllersForm3/controller_form2.dart';
 import 'package:p1/domain/pdf/pdf_generation.dart';
 import 'package:p1/ui/widgets/formularios/tabla_peligro_form2.dart';
 import 'package:p1/domain/controller/controller_tabla_form2.dart';
 import 'package:get/get.dart';
 
-class FormularioDos extends StatefulWidget {
-  const FormularioDos({Key? key}) : super(key: key);
+class FormularioDosv extends StatefulWidget {
+  const FormularioDosv({Key? key}) : super(key: key);
   //DataTimePickerPage() : super();
   @override
-  FormularioDosPage createState() => FormularioDosPage();
+  FormularioDosvPage createState() => FormularioDosvPage();
 }
 
 enum SingingCharacter { rutinario, norutinario }
 enum SingingCharacter1 { alturas, electrico }
 
-class FormularioDosPage extends State<FormularioDos> {
+class FormularioDosvPage extends State<FormularioDosv> {
   DateTime pickedDate = DateTime.now();
   SingingCharacter? _character = SingingCharacter.rutinario;
   SingingCharacter1? _character1 = SingingCharacter1.alturas;
@@ -300,7 +301,7 @@ class FormularioDosPage extends State<FormularioDos> {
                       _cedula.text,
                       _ARL.text,
                       _EPS.text,
-                      Get.find<ControllerTablaForm1>()),
+                      Get.find<ControllerForm2>()),
                 ),
               ),
             ),
@@ -310,3 +311,4 @@ class FormularioDosPage extends State<FormularioDos> {
     );
   }
 }
+*/

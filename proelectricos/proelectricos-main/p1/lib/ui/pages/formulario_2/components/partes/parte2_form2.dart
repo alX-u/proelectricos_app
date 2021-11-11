@@ -1,29 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:p1/ui/widgetReutilizables/comp_textformfield.dart';
 
-class Parte2Form1 extends StatefulWidget {
-  Parte2Form1(
+class Parte2Form2 extends StatefulWidget {
+  const Parte2Form2(
       {Key? key,
-      required this.nombre,
+      required this.nombreapellidos,
       required this.cedula,
+      required this.arl,
+      required this.eps,
       required this.cargo})
       : super(key: key);
 
-  final TextEditingController nombre;
+  final TextEditingController nombreapellidos;
   final TextEditingController cedula;
+  final TextEditingController arl;
+  final TextEditingController eps;
   final TextEditingController cargo;
 
   @override
-  Parte2Form1State createState() {
-    return Parte2Form1State();
+  Parte2Form2State createState() {
+    return Parte2Form2State();
   }
 }
 
 // Create a corresponding State class.
 // Esta clase guarda los datos relacionados con la parte 1 form 3
-class Parte2Form1State extends State<Parte2Form1> {
-  late TextEditingController nombre = widget.nombre;
+class Parte2Form2State extends State<Parte2Form2> {
+  late TextEditingController nombreapellidos = widget.nombreapellidos;
   late TextEditingController cedula = widget.cedula;
+  late TextEditingController arl = widget.arl;
+  late TextEditingController eps = widget.eps;
   late TextEditingController cargo = widget.cargo;
 
   @override
@@ -36,19 +42,31 @@ class Parte2Form1State extends State<Parte2Form1> {
         CompTextFormField(
           casoVacio: 'Rellene todos los campos',
           hintText: '',
-          labelText: 'Nombre completo',
-          cont: nombre,
+          labelText: 'Nombres y apellidos',
+          cont: nombreapellidos,
         ),
         CompTextFormField(
           casoVacio: 'Rellene todos los campos',
           hintText: '',
-          labelText: 'Cédula',
+          labelText: 'Número de cédula',
           cont: cedula,
         ),
         CompTextFormField(
           casoVacio: 'Rellene todos los campos',
           hintText: '',
-          labelText: 'Cargo a desempeñar',
+          labelText: 'ARL',
+          cont: arl,
+        ),
+        CompTextFormField(
+          casoVacio: 'Rellene todos los campos',
+          hintText: '',
+          labelText: 'EPS',
+          cont: eps,
+        ),
+        CompTextFormField(
+          casoVacio: 'Rellene todos los campos',
+          hintText: '',
+          labelText: 'Cargo trabajador',
           cont: cargo,
         ),
       ],

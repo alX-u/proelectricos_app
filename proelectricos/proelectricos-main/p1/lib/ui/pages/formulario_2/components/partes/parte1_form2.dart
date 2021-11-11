@@ -1,43 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:p1/ui/pages/formulario_5/components/formulario_5.dart';
+import 'package:p1/ui/pages/formulario_2/formulario_2.dart';
 import 'package:p1/ui/widgetReutilizables/comp_textformfield.dart';
 
-class Parte1Form5 extends StatefulWidget {
-  Parte1Form5(
+class Parte1Form2 extends StatefulWidget {
+  Parte1Form2(
       {Key? key,
       required this.pickedDate,
-      required this.placa,
-      required this.certDiel,
-      required this.certIz,
+      required this.nombre,
+      required this.trabajo,
       required this.character,
-      required this.character1,
-      required this.character2})
+      required this.character1})
       : super(key: key);
 
   DateTime pickedDate = DateTime.now();
-  final TextEditingController placa;
-  final TextEditingController certDiel;
-  final TextEditingController certIz;
+  final TextEditingController nombre;
+  final TextEditingController trabajo;
   final SingingCharacter? character;
   final SingingCharacter1? character1;
-  final SingingCharacter2? character2;
 
   @override
-  Parte1Form5State createState() {
-    return Parte1Form5State();
+  Parte1Form2State createState() {
+    return Parte1Form2State();
   }
 }
 
 // Create a corresponding State class.
 // Esta clase guarda los datos relacionados con la parte 1 form 3
-class Parte1Form5State extends State<Parte1Form5> {
+class Parte1Form2State extends State<Parte1Form2> {
   late DateTime pickedDate = widget.pickedDate;
+  late TextEditingController nombre = widget.nombre;
+  late TextEditingController trabajo = widget.trabajo;
   late SingingCharacter? character = widget.character;
   late SingingCharacter1? character1 = widget.character1;
-  late SingingCharacter2? character2 = widget.character2;
-  late TextEditingController placa = widget.placa;
-  late TextEditingController certDiel = widget.certDiel;
-  late TextEditingController certIz = widget.certIz;
 
   _pickDate() async {
     DateTime? date = await showDatePicker(
@@ -75,19 +69,25 @@ class Parte1Form5State extends State<Parte1Form5> {
             CompTextFormField(
               casoVacio: 'Rellene todos los campos',
               hintText: '',
-              labelText: 'Placa',
-              cont: placa,
+              labelText: 'Nombre de quién diligencia',
+              cont: nombre,
+            ),
+            CompTextFormField(
+              casoVacio: 'Rellene todos los campos',
+              hintText: '',
+              labelText: 'Trabajo a realizar',
+              cont: trabajo,
             ),
             Container(
               padding: const EdgeInsets.all(20),
               child: const Text(
-                'Tipo de vehiculo',
+                'Clasificacion del trabajo',
                 style: TextStyle(height: 3, fontSize: 15),
               ),
             ),
             RadioListTile<SingingCharacter>(
-              title: const Text('Grua'),
-              value: SingingCharacter.grua,
+              title: const Text('Rutinario'),
+              value: SingingCharacter.rutinario,
               groupValue: character,
               activeColor: const Color(0xff264F95),
               onChanged: (SingingCharacter? value) {
@@ -97,8 +97,8 @@ class Parte1Form5State extends State<Parte1Form5> {
               },
             ),
             RadioListTile<SingingCharacter>(
-              title: const Text('Canasta'),
-              value: SingingCharacter.canasta,
+              title: const Text('No rutinario'),
+              value: SingingCharacter.noRutinario,
               groupValue: character,
               activeColor: const Color(0xff264F95),
               onChanged: (SingingCharacter? value) {
@@ -110,13 +110,13 @@ class Parte1Form5State extends State<Parte1Form5> {
             Container(
               padding: const EdgeInsets.all(20),
               child: const Text(
-                'Técnico mecánica vigente',
+                'La actividad incluye',
                 style: TextStyle(height: 3, fontSize: 15),
               ),
             ),
             RadioListTile<SingingCharacter1>(
-              title: const Text('Sí'),
-              value: SingingCharacter1.si,
+              title: const Text('Trabajo en altura'),
+              value: SingingCharacter1.tAltura,
               groupValue: character1,
               activeColor: const Color(0xff264F95),
               onChanged: (SingingCharacter1? value) {
@@ -126,8 +126,8 @@ class Parte1Form5State extends State<Parte1Form5> {
               },
             ),
             RadioListTile<SingingCharacter1>(
-              title: const Text('No'),
-              value: SingingCharacter1.no,
+              title: const Text('Trabajo eléctrico'),
+              value: SingingCharacter1.tElectrico,
               groupValue: character1,
               activeColor: const Color(0xff264F95),
               onChanged: (SingingCharacter1? value) {
@@ -135,48 +135,7 @@ class Parte1Form5State extends State<Parte1Form5> {
                   character1 = value;
                 });
               },
-            ),
-            Container(
-              padding: const EdgeInsets.all(20),
-              child: const Text(
-                'SOAT vigente',
-                style: TextStyle(height: 3, fontSize: 15),
-              ),
-            ),
-            RadioListTile<SingingCharacter2>(
-              title: const Text('Sí'),
-              value: SingingCharacter2.yes,
-              groupValue: character2,
-              activeColor: const Color(0xff264F95),
-              onChanged: (SingingCharacter2? value) {
-                setState(() {
-                  character2 = value;
-                });
-              },
-            ),
-            RadioListTile<SingingCharacter2>(
-              title: const Text('No'),
-              value: SingingCharacter2.not,
-              groupValue: character2,
-              activeColor: const Color(0xff264F95),
-              onChanged: (SingingCharacter2? value) {
-                setState(() {
-                  character2 = value;
-                });
-              },
-            ),
-            CompTextFormField(
-              casoVacio: 'Rellene todos los campos',
-              hintText: '',
-              labelText: 'Certificados de pruebas dieléctricas vigentes',
-              cont: certDiel,
-            ),
-            CompTextFormField(
-              casoVacio: 'Rellene todos los campos',
-              hintText: '',
-              labelText: 'Certificado de izajes vigentes',
-              cont: certIz,
-            ),
+            )
           ],
         ));
   }

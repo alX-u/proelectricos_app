@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:p1/domain/controller/ControllersForm3/controller_form4.dart';
-import 'package:p1/ui/pages/widgetsReutilizables/CamposDePartes/campos_formularios.dart';
-import 'package:p1/ui/pages/widgetsReutilizables/app_bar.dart';
-import 'package:p1/ui/pages/widgetsReutilizables/tablas_form.dart';
+import 'package:p1/ui/widgetReutilizables/Campos/campos_formularios.dart';
+import 'package:p1/ui/widgetReutilizables/app_bar.dart';
+import 'package:p1/ui/widgetReutilizables/tablas_form.dart';
 import 'package:p1/ui/pages/formulario_4/components/partes/parte1_form4.dart';
 import 'package:p1/ui/pages/formulario_4/components/partes/parte2_form4.dart';
 import 'package:p1/ui/pages/formulario_4/components/partes/parte3_form4.dart';
@@ -32,12 +32,12 @@ class _FormularioCuatroPage extends State<FormularioCuatro> {
   final TextEditingController trabajoRealizado = TextEditingController();
   final bool desenergizado = true;
   final bool energizado = false;
+  //Parte4 form 4
   //Vectores para booleanos
   //Llamar al controlador
   //ControllerForm4 C = Get.find<ControllerForm4>();
   //Son los vectores de booleanos para las tablas
-  //C.valorswparte3 tiene valores de la tabla 3
-  //C.valorswparte4
+  //C.valorswparte4 tiene valores de la tabla
 
   @override
   void initState() {

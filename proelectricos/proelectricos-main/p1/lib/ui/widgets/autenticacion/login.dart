@@ -1,6 +1,7 @@
 //Aquí se realiza el inicio de sesión
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:p1/common/constants.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:p1/domain/controller/authentication_controller.dart';
@@ -12,7 +13,6 @@ import 'package:encrypt/encrypt.dart' as enc;
 final llave = enc.Key.fromLength(32);
 final encrypter = enc.Encrypter(enc.AES(llave));
 final iv = enc.IV.fromLength(16);
-
 
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -27,7 +27,7 @@ class LoginPage extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         brightness: Brightness.light,
-        backgroundColor: const Color(0xff264F95),
+        backgroundColor: proElectricosBlue,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(
@@ -42,7 +42,7 @@ class LoginPage extends StatelessWidget {
       ),
       body: Container(
         width: double.infinity,
-        decoration: const BoxDecoration(color: Color(0xff264F95)),
+        decoration: const BoxDecoration(color: proElectricosBlue),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -89,7 +89,7 @@ class LoginPage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(10),
                               boxShadow: const [
                                 BoxShadow(
-                                    color: Color(0xff264F95),
+                                    color: proElectricosBlue,
                                     blurRadius: 20,
                                     offset: Offset(0, 10))
                               ]),
@@ -181,7 +181,8 @@ class LoginPage extends StatelessWidget {
                                         ],
                                       ));
                             } else {
-                              var value = await controller.login(cc, encrypter.encrypt(password, iv: iv).base64);
+                              var value = await controller.login(cc,
+                                  encrypter.encrypt(password, iv: iv).base64);
                               if (value) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(content: Text('User ok')));
@@ -211,7 +212,7 @@ class LoginPage extends StatelessWidget {
                               }
                             }
                           },
-                          color: const Color(0xff264F95),
+                          color: proElectricosBlue,
                           elevation: 0,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50),

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:p1/common/constants.dart';
 import 'package:p1/domain/pdf/pdf_upload.dart';
 import 'package:p1/ui/pages/formulario_1/formulario_1.dart';
+import 'package:p1/ui/pages/formulario_2/formulario_2.dart';
 import 'package:p1/ui/pages/formulario_4/formulario4.dart';
 import 'package:p1/ui/pages/formulario_5/components/formulario_5.dart';
-import 'package:p1/ui/widgets/componentes/boton_widget.dart';
-import 'package:p1/ui/pages/formulario_2.dart';
+import 'package:p1/ui/widgetReutilizables/boton_widget.dart';
 import 'package:p1/ui/pages/formulario_3/formulario_3.dart';
 
 class OpcionesMenu extends StatelessWidget {
@@ -22,7 +23,7 @@ class OpcionesMenu extends StatelessWidget {
           //Llamamos a la clase BotonWidget
           BotonWidget(
             text: "Autorización de trabajo",
-            icon: const Icon(Icons.feed, size: 20.0, color: Color(0xff264F95)),
+            icon: const Icon(Icons.feed, size: 20.0, color: proElectricosBlue),
             press: () => {
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (BuildContext context) => const FormularioUno()))
@@ -30,16 +31,16 @@ class OpcionesMenu extends StatelessWidget {
           ),
           BotonWidget(
             text: "Análisis de trabajo seguro",
-            icon: const Icon(Icons.lock, size: 20.0, color: Color(0xff264F95)),
+            icon: const Icon(Icons.lock, size: 20.0, color: proElectricosBlue),
             press: () => {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => FormularioDos()))
+                  builder: (BuildContext context) => const FormularioDos()))
             },
           ),
           BotonWidget(
             text: "Lista de chequeo para trabajo en alturas",
             icon: const Icon(Icons.escalator,
-                size: 20.0, color: Color(0xff264F95)),
+                size: 20.0, color: proElectricosBlue),
             press: () => {
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (BuildContext context) => const FormularioTres()))
@@ -48,7 +49,7 @@ class OpcionesMenu extends StatelessWidget {
           BotonWidget(
             text: "Lista de chequeo para trabajos eléctricos",
             icon: const Icon(Icons.tungsten,
-                size: 20.0, color: Color(0xff264F95)),
+                size: 20.0, color: proElectricosBlue),
             press: () => {
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (BuildContext context) => const FormularioCuatro()))
@@ -57,7 +58,7 @@ class OpcionesMenu extends StatelessWidget {
           BotonWidget(
             text: "Preoperacional del vehículo",
             icon: const Icon(Icons.local_shipping,
-                size: 20.0, color: Color(0xff264F95)),
+                size: 20.0, color: proElectricosBlue),
             press: () => {
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (BuildContext context) => FormularioCinco()))
@@ -74,7 +75,7 @@ class OpcionesMenu extends StatelessWidget {
                 onPressed: () {
                   uploadPdf2();
                 },
-                color: const Color(0xff264F95),
+                color: proElectricosBlue,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                 elevation: 2,

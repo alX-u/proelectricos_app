@@ -1,10 +1,11 @@
 //Aquí puedes acceder a tu cuenta y ver las cosas predeterminadas
 import 'package:flutter/material.dart';
+import 'package:p1/common/constants.dart';
 import 'package:p1/domain/controller/authentication_controller.dart';
 import 'package:p1/domain/controller/workpage_controller.dart';
 import 'package:p1/ui/widgets/menu_general/perfilUsuario/signature_pad.dart';
 import 'package:p1/ui/widgets/menu_general/perfilUsuario/imagen_perfil.dart';
-import 'package:p1/ui/widgets/componentes/boton_widget.dart';
+import 'package:p1/ui/widgetReutilizables/boton_widget.dart';
 import "package:p1/ui/widgets/autenticacion/login.dart";
 import 'package:get/get.dart';
 
@@ -16,15 +17,15 @@ class EditProfilePage extends StatefulWidget {
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
-
   AuthenticationController controller = Get.find<AuthenticationController>();
   WorkPageController work_controller = Get.find<WorkPageController>();
 
-  void cerrarSesion(controller,context) {
+  void cerrarSesion(controller, context) {
     var value = controller.logout();
-    Navigator.of(context).push(MaterialPageRoute(
-        builder: (BuildContext context) => LoginPage()));
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (BuildContext context) => LoginPage()));
   }
+
   bool showPassword = false;
 
   @override
@@ -87,9 +88,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
               BotonWidget(
                 text: "Cerrar sesión",
                 icon: const Icon(Icons.feed, size: 0, color: Colors.black),
-                press: () => {
-                  cerrarSesion(controller,context)
-                },
+                press: () => {cerrarSesion(controller, context)},
               ),
 
               const SizedBox(
@@ -109,7 +108,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   ),
                   RaisedButton(
                     onPressed: () {},
-                    color: const Color(0xff264F95),
+                    color: proElectricosBlue,
                     padding: const EdgeInsets.symmetric(horizontal: 50),
                     elevation: 2,
                     shape: RoundedRectangleBorder(

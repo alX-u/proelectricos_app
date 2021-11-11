@@ -1,5 +1,6 @@
 //Widget de cualquier botón que vaya en el perfil que te permita editar algo
 import 'package:flutter/material.dart';
+import 'package:p1/common/constants.dart';
 
 //Constructor de los campos obligatorios que deben tener estos botones:
 //El texto, el icono y hacia donde va el onPressed
@@ -34,7 +35,7 @@ class CompTextFormField extends StatelessWidget {
           labelText: labelText,
           border: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(30)),
-              borderSide: BorderSide(color: Color(0xff264F95))),
+              borderSide: BorderSide(color: proElectricosBlue)),
         ),
       ),
     );

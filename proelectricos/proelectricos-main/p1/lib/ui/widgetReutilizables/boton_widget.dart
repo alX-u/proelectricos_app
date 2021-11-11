@@ -1,5 +1,6 @@
 //Widget de cualquier botón que vaya en el perfil que te permita editar algo
 import 'package:flutter/material.dart';
+import 'package:p1/common/constants.dart';
 
 //Constructor de los campos obligatorios que deben tener estos botones:
 //El texto, el icono y hacia donde va el onPressed
@@ -21,7 +22,7 @@ class BotonWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
       child: TextButton(
         style: TextButton.styleFrom(
-          primary: const Color(0xff264F95),
+          primary: proElectricosBlue,
           padding: const EdgeInsets.all(20),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),

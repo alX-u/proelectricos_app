@@ -1,5 +1,88 @@
 class CamposFormularios {
+  /*--------------------------------------------------------------------------*/
+  //Formulario 2
+  /*--------------------------------------------------------------------------*/
+  //Eléctrico
+  static var camposParte3Form2 = [
+    "Autorización y/o orden de trabajo",
+    'Usar botas dieléctricas',
+    'Casco dieléctrico',
+    'Mantiene las distancias de seguridad correctas',
+  ];
+  //Mecánico
+  static var camposParte4Form2 = [
+    'Usar guantes de vaqueta, nitrilo o carnaza',
+    'Dotación (camisa manga larga y pantalón)',
+    'Usar casco con barbuquejo',
+    'Protección visual gafas con filtro UV',
+    'Usar botas dielectricas',
+    'Herramientas en buen estado',
+    'Barandas o cintas antideslizantes'
+  ];
+  //Trabajo en alturas
+  static var camposParte5Form2 = [
+    'Usar puntos de anclaje portatíl (Tie off)',
+    'Usar linea de vida',
+    'Usar casco con barbuquejo',
+    'Eslinga para protección de caídas',
+    'Eslinga de posicionamiento',
+    'Arnés de seguridad',
+    'Verificación del sistema de acceso',
+    'Aplicación de Procedimiento de trabajo seguros'
+  ];
+  //Biomecánicos
+  static var camposParte6Form2 = [
+    'Hacer calentamiento previo',
+    'Levantar correctamente las cargas',
+    'Realización de pausas activas',
+  ];
+  //Físico
+  static var camposParte7Form2 = [
+    'Hidratación',
+    'Uso de protector solar',
+    'Usar linterna',
+    'Uso de iluminación preventiva en vehículos',
+    'Usar protección auditiva',
+    'Dotación de uniforme camisas manga larga',
+    'Usar gafas con filtro UV'
+  ];
+  //Público
+  static var camposParte8Form2 = [
+    'Sistema de monitoreo - Acompañamiento policiaco',
+    'Comunicación y plantificación',
+  ];
+  //Transito
+  static var camposParte9Form2 = [
+    'Señalización con vallas, conos, tubulares, cinta, etc',
+    'Protección completa de la zona de trabajo'
+  ];
+  //Biológico
+  static var camposParte10Form2 = [
+    'Usar botas de caucho caña alta',
+    'Higienización de vahículo y herramientas',
+    'Usar protector respiratorio y gafas',
+    'Dotación camisa manga larga',
+    'Lavado de manos con agua y jabón'
+  ];
+  //Psicosocial
+  static var camposParte11Form2 = ['Manejo de estrés', 'Comunicación efectiva'];
+  //Locativo
+  static var camposParte12Form2 = [
+    'Señalización y demarcación de área',
+    'Caminar con precaución',
+    'Verificación del área de trabajo',
+    'Usar botas de seguridad',
+    'Usar botas de caña alta',
+  ];
+  //Químico
+  static var camposParte13Form2 = [
+    'Protección respiratoria',
+    'Usar gafas con filtro UV',
+    'Kit de derrames'
+  ];
+  /*--------------------------------------------------------------------------*/
   //Formulario 3
+  /*--------------------------------------------------------------------------*/
   static var camposParte3Form3 = [
     "Se dispone de los elementos necesarios para trabajar en alturas",
     "Trabajadores autorizados y capacitados para el trabajo en alturas",
@@ -23,7 +106,9 @@ class CamposFormularios {
     "Se cuenta con el AST/ correctamente diligenciado",
     "El área de ejecución de la labor se encuentra limpia"
   ];
+  /*--------------------------------------------------------------------------*/
   //Formulario 4
+  /*--------------------------------------------------------------------------*/
   static var camposParte4Form4 = [
     "Se cuenta con la OT expedida por el cliente para la labor",
     "Los sistemas de acceso utilizados se encuentran certificados",
@@ -53,7 +138,9 @@ class CamposFormularios {
     'Antes de realizar el trabajo eléctricos verifique todas las herramientas y protecciones que va utilizar',
     'El trabajador se encuentra concientizado al riesgo que se va enfrentar'
   ];
+  /*--------------------------------------------------------------------------*/
   //Formulario 5
+  /*--------------------------------------------------------------------------*/
   static var camposParte2Form5 = [
     "Espárragos",
     'Labrado',
@@ -125,4 +212,5 @@ class CamposFormularios {
     'Estado general de la carrocería',
     'Suspensión'
   ];
+  /*--------------------------------------------------------------------------*/
 }

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:p1/common/constants.dart';
 import 'package:p1/domain/controller/ControllersForm3/controller_form5.dart';
 import 'package:p1/ui/pages/formulario_5/components/partes/parte1_form5.dart';
 import 'package:p1/ui/pages/formulario_5/components/partes/parte7_form5.dart';
-import 'package:p1/ui/pages/widgetsReutilizables/CamposDePartes/campos_formularios.dart';
-import 'package:p1/ui/pages/widgetsReutilizables/app_bar.dart';
-import 'package:p1/ui/pages/widgetsReutilizables/tablas_form.dart';
+import 'package:p1/ui/widgetReutilizables/Campos/campos_formularios.dart';
+import 'package:p1/ui/widgetReutilizables/app_bar.dart';
+import 'package:p1/ui/widgetReutilizables/tablas_form.dart';
 
 class FormularioCinco extends StatefulWidget {
   const FormularioCinco({Key? key}) : super(key: key);
@@ -32,11 +33,11 @@ class _FormularioCincoPage extends State<FormularioCinco> {
   //Llamar al controlador
   //ControllerForm5 C = Get.find<ControllerForm5>();
   //Son los vectores de booleanos para las tablas
-  //C.valorswparte2 tiene valores de la tabla 2
-  //C.valorswparte3 tiene valores de la tabla 3
-  //C.valorswparte4 tiene valores de la tabla 4
-  //C.valorswparte5 tiene valores de la tabla 5
-  //C.valorswparte6 tiene valores de la tabla 6
+  //C.valorswparte2 tiene valores de la tabla de la parte 2
+  //C.valorswparte3 tiene valores de la tabla de la parte 3
+  //C.valorswparte4 tiene valores de la tabla de la parte 4
+  //C.valorswparte5 tiene valores de la tabla de la parte 5
+  //C.valorswparte6 tiene valores de la tabla de la parte 6
   //Parte7 form5
   final TextEditingController kilometraje = TextEditingController();
   final TextEditingController horometro = TextEditingController();
@@ -56,7 +57,7 @@ class _FormularioCincoPage extends State<FormularioCinco> {
       //BARRA DE NAVEGACIÓN
       appBar: const AppBarWidget(
         text: 'Inspección preoperacional de carro canasta y/o grua',
-        backgroundColor: Color(0xff264F95),
+        backgroundColor: proElectricosBlue,
         height: 60,
       ),
       //CUERPO
@@ -65,7 +66,7 @@ class _FormularioCincoPage extends State<FormularioCinco> {
         key: _formKey,
         child: Theme(
           data: Theme.of(context).copyWith(
-            colorScheme: const ColorScheme.light(primary: Color(0xff264F95)),
+            colorScheme: const ColorScheme.light(primary: proElectricosBlue),
           ),
           child: Stepper(
             type: StepperType.vertical,
@@ -123,7 +124,7 @@ class _FormularioCincoPage extends State<FormularioCinco> {
                     ),
                   RaisedButton(
                     onPressed: onStepContinue,
-                    color: const Color(0xff264F95),
+                    color: proElectricosBlue,
                     padding: const EdgeInsets.symmetric(horizontal: 40),
                     elevation: 2,
                     shape: RoundedRectangleBorder(

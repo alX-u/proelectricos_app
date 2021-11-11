@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:p1/ui/pages/widgetsReutilizables/comp_textformfield.dart';
+import 'package:p1/common/constants.dart';
 
 class Parte3Form1 extends StatefulWidget {
   Parte3Form1({Key? key, required this.trabajoRealizado}) : super(key: key);
@@ -39,7 +39,7 @@ class Parte3Form1State extends State<Parte3Form1> {
             labelText: '',
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
-                borderSide: BorderSide(color: Color(0xff264F95))),
+                borderSide: BorderSide(color: proElectricosBlue)),
           ),
         ),
       ],

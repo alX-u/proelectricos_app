@@ -1,5 +1,6 @@
 //El home es donde se da la opción de iniciar sesión o registrarse
 import 'package:flutter/material.dart';
+import 'package:p1/common/constants.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
@@ -11,7 +12,6 @@ import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
-
 
   @override
   Widget build(BuildContext context) {
@@ -72,9 +72,10 @@ class HomePage extends StatelessWidget {
                     minWidth: double.infinity,
                     height: 60,
                     onPressed: () {
-                      Get.toNamed(controller.logged ? "/MenuTrabajos": "/LoginPage");
+                      Get.toNamed(
+                          controller.logged ? "/MenuTrabajos" : "/LoginPage");
                       //Navigator.push(context,
-                        //  MaterialPageRoute(builder: (context) => controller.logged ? SignupPage() : LoginPage()));
+                      //  MaterialPageRoute(builder: (context) => controller.logged ? SignupPage() : LoginPage()));
                       //MaterialPageRoute(builder: (context) => Obx(() => controller.logged ? SignupPage() : LoginPage())));
                       //MaterialPageRoute(builder: (context)=>LoginPage()));
                     },
@@ -90,27 +91,28 @@ class HomePage extends StatelessWidget {
                   ),
                   // creating the signup button
                   const SizedBox(height: 20),
-                  (controller.logged) ? Container() :MaterialButton(
-                    minWidth: double.infinity,
-                    height: 60,
-
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SignupPage()));
-                    },
-                    color: const Color(0xff264F95),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50)),
-                    child: const Text(
-                      "Registrarse",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 18),
-                    ),
-                  )
+                  (controller.logged)
+                      ? Container()
+                      : MaterialButton(
+                          minWidth: double.infinity,
+                          height: 60,
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SignupPage()));
+                          },
+                          color: proElectricosBlue,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50)),
+                          child: const Text(
+                            "Registrarse",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 18),
+                          ),
+                        )
                 ],
               )
             ],

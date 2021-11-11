@@ -1,11 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:p1/common/constants.dart';
 import 'package:p1/ui/pages/formulario_1/components/partes/parte1_form1.dart';
 import 'package:p1/ui/pages/formulario_1/components/partes/parte2_form1.dart';
 import 'package:p1/ui/pages/formulario_1/components/partes/parte3_form1.dart';
 import 'package:p1/ui/pages/formulario_1/components/partes/parte4_form1.dart';
-import 'package:p1/ui/pages/widgetsReutilizables/app_bar.dart';
+import 'package:p1/ui/widgetReutilizables/app_bar.dart';
 import 'package:p1/ui/pages/sheets/sheet%20connection/sheets_connection_1.dart';
 import 'package:p1/ui/widgets/menu_general/menu/menu.dart';
 import 'package:p1/ui/pages/sheets/form_1_sheet.dart';
@@ -71,7 +72,7 @@ class _FormularioUnoPage extends State<FormularioUno> {
       //BARRA DE NAVEGACIÓN
       appBar: const AppBarWidget(
         text: 'Lista de chequeo para trabajo en alturas',
-        backgroundColor: Color(0xff264F95),
+        backgroundColor: proElectricosBlue,
         height: 60,
       ),
       //CUERPO
@@ -80,7 +81,7 @@ class _FormularioUnoPage extends State<FormularioUno> {
         key: _formKey,
         child: Theme(
           data: Theme.of(context).copyWith(
-            colorScheme: const ColorScheme.light(primary: Color(0xff264F95)),
+            colorScheme: const ColorScheme.light(primary: proElectricosBlue),
           ),
           child: Stepper(
             type: StepperType.vertical,
@@ -228,7 +229,7 @@ class _FormularioUnoPage extends State<FormularioUno> {
                     ),
                   RaisedButton(
                     onPressed: onStepContinue,
-                    color: const Color(0xff264F95),
+                    color: proElectricosBlue,
                     padding: const EdgeInsets.symmetric(horizontal: 40),
                     elevation: 2,
                     shape: RoundedRectangleBorder(

@@ -2,6 +2,7 @@
 //los usuarios los debería ingresar directamente la empresa, pero por ahora se
 //dejará
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:p1/common/constants.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:p1/ui/widgets/autenticacion/home.dart';
@@ -128,7 +129,8 @@ class SignupPage extends StatelessWidget {
                             "cc": int.parse(cc),
                             "email": email,
                             "nombre": nombre,
-                            "password": encrypter.encrypt(password, iv: iv).base64
+                            "password":
+                                encrypter.encrypt(password, iv: iv).base64
                           })
                           .then((value) => showDialog(
                               context: context,
@@ -155,7 +157,7 @@ class SignupPage extends StatelessWidget {
                     //Llamado a la función
                     registrarUsuario();
                   },
-                  color: const Color(0xff264F95),
+                  color: proElectricosBlue,
                   elevation: 0,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50),

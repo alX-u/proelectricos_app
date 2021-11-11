@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:p1/ui/pages/widgetsReutilizables/scrollable_widget.dart';
+import 'package:p1/common/constants.dart';
+import 'package:p1/ui/widgetReutilizables/scrollable_widget.dart';
 
 class TablasForm extends StatefulWidget {
   const TablasForm(
@@ -37,7 +38,7 @@ class TablasFormState extends State<TablasForm> {
   Widget buildDataTable() {
     return DataTable(
       headingRowColor:
-          MaterialStateColor.resolveWith((states) => const Color(0xff264F95)),
+          MaterialStateColor.resolveWith((states) => proElectricosBlue),
       //Espacio vertical entre campos
       dataRowHeight: 90,
       columns: getColumns(titleColumns),
@@ -73,7 +74,7 @@ class TablasFormState extends State<TablasForm> {
                       print(valorsw[titleRows.indexOf(campo)].value);
                     });
                   },
-                  activeColor: const Color(0xff264F95),
+                  activeColor: proElectricosBlue,
                   inactiveThumbColor: Colors.orangeAccent,
                   inactiveTrackColor: Colors.yellow,
                 ),

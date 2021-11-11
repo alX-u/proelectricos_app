@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:p1/common/constants.dart';
 
 class Encabezado extends StatelessWidget {
   const Encabezado({
@@ -26,7 +27,7 @@ class Encabezado extends StatelessWidget {
             ),
             height: size.height * 0.2 - 27,
             decoration: const BoxDecoration(
-              color: Color(0xff264F95),
+              color: proElectricosBlue,
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(36),
                 bottomRight: Radius.circular(36),

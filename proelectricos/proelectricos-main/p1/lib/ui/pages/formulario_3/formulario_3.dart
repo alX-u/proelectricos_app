@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:p1/common/constants.dart';
 import 'package:p1/domain/controller/ControllersForm3/controller_tablaparte3_form3.dart';
-import 'package:p1/ui/pages/widgetsReutilizables/app_bar.dart';
+import 'package:p1/ui/widgetReutilizables/app_bar.dart';
 import 'package:p1/ui/pages/sheets/form_3_sheet.dart';
 import 'package:p1/ui/pages/sheets/sheet%20connection/sheets_connection_3.dart';
 import 'package:p1/ui/pages/formulario_3/components/partes/parte1_form3.dart';
-import 'package:p1/ui/pages/widgetsReutilizables/tablas_form.dart';
+import 'package:p1/ui/widgetReutilizables/tablas_form.dart';
 
-import 'package:p1/ui/pages/widgetsReutilizables/CamposDePartes/campos_formularios.dart';
+import 'package:p1/ui/widgetReutilizables/Campos/campos_formularios.dart';
 
 import 'components/partes/parte4_form3.dart';
 
@@ -57,7 +58,7 @@ class _FormularioTresPage extends State<FormularioTres> {
       //BARRA DE NAVEGACIÓN
       appBar: const AppBarWidget(
         text: 'Lista de chequeo para trabajo en alturas',
-        backgroundColor: Color(0xff264F95),
+        backgroundColor: proElectricosBlue,
         height: 60,
       ),
       //CUERPO
@@ -66,7 +67,7 @@ class _FormularioTresPage extends State<FormularioTres> {
         key: _formKey,
         child: Theme(
           data: Theme.of(context).copyWith(
-            colorScheme: const ColorScheme.light(primary: Color(0xff264F95)),
+            colorScheme: const ColorScheme.light(primary: proElectricosBlue),
           ),
           child: Stepper(
             type: StepperType.vertical,
@@ -179,7 +180,7 @@ class _FormularioTresPage extends State<FormularioTres> {
                     ),
                   RaisedButton(
                     onPressed: onStepContinue,
-                    color: const Color(0xff264F95),
+                    color: proElectricosBlue,
                     padding: const EdgeInsets.symmetric(horizontal: 40),
                     elevation: 2,
                     shape: RoundedRectangleBorder(

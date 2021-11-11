@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 import 'package:p1/domain/controller/controller_tabla_form2.dart';
 import 'package:get/get.dart';
 
@@ -1529,3 +1529,4 @@ class TablaPeligroForm1 extends StatelessWidget {
 //   }
 // }
 
+*/

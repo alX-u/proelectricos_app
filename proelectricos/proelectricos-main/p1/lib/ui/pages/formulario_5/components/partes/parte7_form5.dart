@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:p1/ui/pages/widgetsReutilizables/comp_textformfield.dart';
+import 'package:p1/ui/widgetReutilizables/comp_textformfield.dart';
 
 class Parte7Form5 extends StatefulWidget {
   const Parte7Form5(

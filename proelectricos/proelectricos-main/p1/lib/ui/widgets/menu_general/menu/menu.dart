@@ -1,9 +1,10 @@
 //Este es el menú general que lleva a todos los formularios
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:p1/common/constants.dart';
 import 'package:p1/domain/controller/authentication_controller.dart';
-import 'package:p1/ui/pages/widgetsReutilizables/app_bar.dart';
-import 'package:p1/ui/widgets/componentes/encabezado.dart';
+import 'package:p1/ui/widgetReutilizables/app_bar.dart';
+import 'package:p1/ui/widgetReutilizables/encabezado.dart';
 import 'package:p1/ui/widgets/menu_general/menu/opciones_menu.dart';
 
 class MenuOptionsScreen extends StatefulWidget {
@@ -24,7 +25,7 @@ class _MenuOptionsScreenState extends State<MenuOptionsScreen> {
       //BARRA DE NAVEGACIÓN
       appBar: const AppBarWidget(
         text: '',
-        backgroundColor: Color(0xff264F95),
+        backgroundColor: proElectricosBlue,
         height: 60,
       ),
       //CUERPO

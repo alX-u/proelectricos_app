@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:p1/ui/pages/widgetsReutilizables/comp_textformfield.dart';
+import 'package:p1/common/constants.dart';
+import 'package:p1/ui/widgetReutilizables/comp_textformfield.dart';
 
 class Parte4Form1 extends StatefulWidget {
   const Parte4Form1(
@@ -45,7 +46,7 @@ class Parte4Form1State extends State<Parte4Form1> {
               preservacion = value!;
             });
           },
-          activeColor: const Color(0xff264F95),
+          activeColor: proElectricosBlue,
           checkColor: Colors.white,
         ),
         CompTextFormField(

@@ -1,5 +1,6 @@
 //Esto basicamente contiene lel códio de cómo se pone la imagen en el perfil
 import 'package:flutter/material.dart';
+import 'package:p1/common/constants.dart';
 
 class ImagenPerfil extends StatelessWidget {
   const ImagenPerfil({
@@ -43,7 +44,7 @@ class ImagenPerfil extends StatelessWidget {
                     width: 4,
                     color: Theme.of(context).scaffoldBackgroundColor,
                   ),
-                  color: const Color(0xff264F95),
+                  color: proElectricosBlue,
                 ),
                 child: const Icon(
                   Icons.edit,

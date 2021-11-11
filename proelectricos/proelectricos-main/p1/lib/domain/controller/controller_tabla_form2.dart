@@ -1,4 +1,4 @@
-import 'package:get/get.dart';
+/*import 'package:get/get.dart';
 
 class ControllerTablaForm1 extends GetxController {
   RxList<RxBool> si = RxList.generate(59, (_) => true.obs);
@@ -18,3 +18,4 @@ class ControllerTablaForm1 extends GetxController {
     }
   }
 }
+*/
