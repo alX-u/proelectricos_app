@@ -104,7 +104,14 @@ class CamposFormularios {
     "Se señalizó y delimitó el área de trabajo",
     "Se cuenta con todos los documentos del personal",
     "Se cuenta con el AST/ correctamente diligenciado",
-    "El área de ejecución de la labor se encuentra limpia"
+    "El área de ejecución de la labor se encuentra limpia",
+    "Las condiciones del personal son óptimas para el trabajo",
+    "Se realizo la charla de seguridad inicial del trabajo",
+    "Se contemplo la mitigación de riesgos y peligros",
+    "La superficie de trabajo es adecuado",
+    "Los puntos de apoyo son adecuados (certificados, estructurales, autorizados)",
+    "Se cuenta con la información de actuación en caso de emergencia",
+    "Las condiciones climáticas son favoriables"
   ];
   /*--------------------------------------------------------------------------*/
   //Formulario 4

@@ -1,8 +1,10 @@
 //Aquí puedes acceder a tu cuenta y ver las cosas predeterminadas
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:p1/common/constants.dart';
 import 'package:p1/domain/controller/authentication_controller.dart';
 import 'package:p1/domain/controller/workpage_controller.dart';
+import 'package:p1/ui/widgetReutilizables/app_bar.dart';
 import 'package:p1/ui/widgets/menu_general/perfilUsuario/signature_pad.dart';
 import 'package:p1/ui/widgets/menu_general/perfilUsuario/imagen_perfil.dart';
 import 'package:p1/ui/widgetReutilizables/boton_widget.dart';
@@ -28,26 +30,35 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   bool showPassword = false;
 
+  final nameController = TextEditingController();
+  final ccController = TextEditingController();
+  final emailController = TextEditingController();
+  final arlController = TextEditingController();
+  final epsController = TextEditingController();
+  final telefonoController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       //Aquí va todo lo que va en la barra superior
       appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        title: const Text("Editar perfil",
-            style: TextStyle(fontSize: 14, color: Colors.black)),
-        elevation: 1,
-        //Botón back que va a la pantalla anterior
+        backgroundColor: proElectricosBlue,
+        elevation: 0,
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back,
-            color: Colors.black,
+            color: Colors.white,
           ),
           //Te regresa a la ruta inmediatamente anterior
           onPressed: () {
             Navigator.pop(context);
           },
         ),
+        title: const Text("Perfil de usuario",
+            style: TextStyle(
+              fontSize: 13,
+              color: Colors.white,
+            )),
       ),
       //Termina todo lo que va en la barra superior
 
@@ -70,20 +81,48 @@ class _EditProfilePageState extends State<EditProfilePage> {
               const SizedBox(
                 height: 35,
               ),
+              inputFile(
+                  label: "Nombre completo:",
+                  placeholder: controller.name,
+                  controller: nameController),
+              inputFile(
+                  label: "Nombre completo:",
+                  placeholder: controller.cc,
+                  controller: ccController),
+              inputFile(
+                  label: "email:",
+                  placeholder: controller.email,
+                  controller: emailController),
+              inputFile(
+                  label: "arl:",
+                  placeholder: controller.arl,
+                  controller: arlController),
+              inputFile(
+                  label: "eps:",
+                  placeholder: controller.eps,
+                  controller: epsController),
+              inputFile(
+                  label: "tel:",
+                  placeholder: controller.tel,
+                  controller: telefonoController),
 
-              buildTextField("Nombre completo", controller.name, false),
-              buildTextField("CC", controller.cc, false),
+              //buildTextField("Nombre completo", controller.name, false),
+              // buildTextField("CC", controller.cc, false),
+              //buildTextField("Email", controller.email, false),
+              //buildTextField("arl", controller.arl, false),
+              //buildTextField("eps", controller.eps, false),
+              //buildTextField("telefono", controller.tel, false),
+
               buildTextField("Contraseña", "********", true),
+
               //PARTE DE LA FIRMA
               //Llamamos a la clase BotonWidget
-              MyButton("Firmar/Cambiar firma", "tech_signature",
-                  const Icon(Icons.feed, size: 0, color: Colors.black)),
+              const MyButton("Cambiar firma", "tech_signature",
+                  Icon(Icons.feed, size: 0, color: Colors.black)),
               BotonWidget(
                 text: "Ver firma",
                 icon: const Icon(Icons.feed, size: 0, color: Colors.black),
-                press: () => {
-                  Get.toNamed('/SignaturePreview', arguments: 'tech_signature')
-                },
+                press: () => {Get.toNamed('/SignaturePreview')},
               ),
               BotonWidget(
                 text: "Cerrar sesión",
@@ -107,7 +146,17 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         style: TextStyle(fontSize: 14, color: Colors.black)),
                   ),
                   RaisedButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      print("Me presionaron");
+                      String cc = ccController.text.trim();
+                      String nombre = nameController.text.trim();
+                      String email = emailController.text.trim();
+                      //String password = passController.text.trim();
+                      String arl = arlController.text.trim();
+                      String eps = epsController.text.trim();
+                      String telefono = telefonoController.text.trim();
+                      controller.updateData(email, telefono, arl, eps);
+                    },
                     color: proElectricosBlue,
                     padding: const EdgeInsets.symmetric(horizontal: 50),
                     elevation: 2,
@@ -160,4 +209,36 @@ class _EditProfilePageState extends State<EditProfilePage> {
       ),
     );
   }
+}
+
+Widget inputFile({label, placeholder, obscureText = false, controller}) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: <Widget>[
+      Text(
+        label,
+        style: const TextStyle(
+            fontSize: 15, fontWeight: FontWeight.w400, color: Colors.black87),
+      ),
+      const SizedBox(
+        height: 5,
+      ),
+      TextField(
+        obscureText: obscureText,
+        controller: controller,
+        decoration: InputDecoration(
+            contentPadding:
+                const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+            enabledBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.grey),
+            ),
+            hintText: placeholder,
+            border:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.grey))),
+      ),
+      const SizedBox(
+        height: 10,
+      )
+    ],
+  );
 }

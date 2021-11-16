@@ -1,5 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:p1/common/constants.dart';
+import 'package:p1/domain/controller/workpage_controller.dart';
 import 'package:p1/domain/pdf/pdf_upload.dart';
 import 'package:p1/ui/pages/formulario_1/formulario_1.dart';
 import 'package:p1/ui/pages/formulario_2/formulario_2.dart';
@@ -8,11 +12,13 @@ import 'package:p1/ui/pages/formulario_5/components/formulario_5.dart';
 import 'package:p1/ui/widgetReutilizables/boton_widget.dart';
 import 'package:p1/ui/pages/formulario_3/formulario_3.dart';
 
-class OpcionesMenu extends StatelessWidget {
-  const OpcionesMenu({
-    Key? key,
-  }) : super(key: key);
+Color completedGreen = Colors.green;
 
+class OpcionesMenu extends StatelessWidget {
+  final int jobNumber; // representa el número del trabajo de este menu
+  OpcionesMenu({Key? key, required this.jobNumber}) : super(key: key);
+
+  WorkPageController C = Get.find();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,7 +32,8 @@ class OpcionesMenu extends StatelessWidget {
             icon: const Icon(Icons.feed, size: 20.0, color: proElectricosBlue),
             press: () => {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => const FormularioUno()))
+                  builder: (BuildContext context) =>
+                      FormularioUno(jobNumber: jobNumber)))
             },
           ),
           BotonWidget(
@@ -34,7 +41,8 @@ class OpcionesMenu extends StatelessWidget {
             icon: const Icon(Icons.lock, size: 20.0, color: proElectricosBlue),
             press: () => {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => const FormularioDos()))
+                  builder: (BuildContext context) =>
+                      FormularioDos(jobNumber: jobNumber)))
             },
           ),
           BotonWidget(
@@ -43,7 +51,8 @@ class OpcionesMenu extends StatelessWidget {
                 size: 20.0, color: proElectricosBlue),
             press: () => {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => const FormularioTres()))
+                  builder: (BuildContext context) =>
+                      FormularioTres(jobNumber: jobNumber)))
             },
           ),
           BotonWidget(
@@ -52,7 +61,8 @@ class OpcionesMenu extends StatelessWidget {
                 size: 20.0, color: proElectricosBlue),
             press: () => {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => const FormularioCuatro()))
+                  builder: (BuildContext context) =>
+                      FormularioCuatro(jobNumber: jobNumber)))
             },
           ),
           BotonWidget(
@@ -61,7 +71,8 @@ class OpcionesMenu extends StatelessWidget {
                 size: 20.0, color: proElectricosBlue),
             press: () => {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => FormularioCinco()))
+                  builder: (BuildContext context) =>
+                      FormularioCinco(jobNumber: jobNumber)))
             },
           ),
           const SizedBox(
@@ -72,8 +83,24 @@ class OpcionesMenu extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               RaisedButton(
-                onPressed: () {
-                  uploadPdf2();
+                onPressed: () async {
+                  try {
+                    if (await uploadStoredJobPDFS(jobNumber)
+                        .timeout(const Duration(seconds: 30))) {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text(
+                              'Se enviaron los formularios correctamente.')));
+                      Navigator.pop(context);
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text(
+                              'Completar todos los formularios primero!')));
+                    }
+                  } on TimeoutException catch (e) {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text(
+                            'No se pudo enviar los formularios, verificar la conexión de internet.')));
+                  }
                 },
                 color: proElectricosBlue,
                 padding:

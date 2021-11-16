@@ -8,7 +8,9 @@ import 'package:p1/ui/widgetReutilizables/encabezado.dart';
 import 'package:p1/ui/widgets/menu_general/menu/opciones_menu.dart';
 
 class MenuOptionsScreen extends StatefulWidget {
-  const MenuOptionsScreen({Key? key}) : super(key: key);
+  final int jobNumber; // representa el número del trabajo de este menu
+  const MenuOptionsScreen({Key? key, required this.jobNumber})
+      : super(key: key);
   @override
   _MenuOptionsScreenState createState() => _MenuOptionsScreenState();
 }
@@ -39,7 +41,7 @@ class _MenuOptionsScreenState extends State<MenuOptionsScreen> {
                 text: "Hola, " +
                     authentication_controller.name +
                     " \n\n ¡Llena tus formularios!"),
-            const OpcionesMenu(),
+            OpcionesMenu(jobNumber: widget.jobNumber),
           ],
         ),
       ),

@@ -1,7 +1,6 @@
 //El home es donde se da la opción de iniciar sesión o registrarse
 import 'package:flutter/material.dart';
 import 'package:p1/common/constants.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:p1/ui/widgets/autenticacion/signup.dart';
@@ -16,10 +15,10 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AuthenticationController controller = Get.find<AuthenticationController>();
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    // SystemChrome.setPreferredOrientations([
+    //   DeviceOrientation.portraitUp,
+    //   DeviceOrientation.portraitDown,
+    // ]);
     controller.init();
     return Scaffold(
       body: SafeArea(

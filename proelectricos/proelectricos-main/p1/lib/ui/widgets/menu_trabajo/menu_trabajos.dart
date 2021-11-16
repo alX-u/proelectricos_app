@@ -7,6 +7,8 @@ import 'package:p1/domain/controller/workpage_controller.dart';
 import 'package:get/get.dart';
 
 class MenuTrabajos extends StatefulWidget {
+  // final String
+  //     trabajoFolder; // carpeta interna de donde se guardan los trabajos, necesario para diferenciar trabajo 0 del trabajo 1
   const MenuTrabajos({Key? key}) : super(key: key);
   @override
   _MenuTrabajosState createState() => _MenuTrabajosState();
@@ -19,7 +21,6 @@ class _MenuTrabajosState extends State<MenuTrabajos> {
 
   @override
   Widget build(BuildContext context) {
-    controller.init();
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
