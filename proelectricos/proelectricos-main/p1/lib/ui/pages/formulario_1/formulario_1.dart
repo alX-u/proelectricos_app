@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:p1/common/constants.dart';
+import 'package:p1/domain/pdf/pdf_generation1.dart';
 import 'package:p1/ui/pages/formulario_1/components/partes/parte1_form1.dart';
 import 'package:p1/ui/pages/formulario_1/components/partes/parte2_form1.dart';
 import 'package:p1/ui/pages/formulario_1/components/partes/parte3_form1.dart';
@@ -10,9 +11,11 @@ import 'package:p1/ui/widgetReutilizables/app_bar.dart';
 import 'package:p1/ui/pages/sheets/sheet%20connection/sheets_connection_1.dart';
 import 'package:p1/ui/widgets/menu_general/menu/menu.dart';
 import 'package:p1/ui/pages/sheets/form_1_sheet.dart';
+import 'package:p1/ui/widgets/menu_general/perfilUsuario/signature_pad.dart';
 
 class FormularioUno extends StatefulWidget {
-  const FormularioUno({Key? key}) : super(key: key);
+  final int jobNumber; // Representa a que trabajo pertenece este formulario.
+  const FormularioUno({Key? key, required this.jobNumber}) : super(key: key);
   @override
   _FormularioUnoPage createState() => _FormularioUnoPage();
 }
@@ -21,9 +24,9 @@ class _FormularioUnoPage extends State<FormularioUno> {
   int currentStep = 0;
   final _formKey = GlobalKey<FormState>();
   //Parte 1 form 1
+  DateTime pickedDate = DateTime.now();
   final TextEditingController empresa = TextEditingController();
   final TextEditingController municipio = TextEditingController();
-  DateTime pickedDate = DateTime.now();
   final TextEditingController cliente = TextEditingController();
   final TextEditingController jornada = TextEditingController();
   final TextEditingController vehiculo = TextEditingController();
@@ -71,7 +74,7 @@ class _FormularioUnoPage extends State<FormularioUno> {
       backgroundColor: Colors.white,
       //BARRA DE NAVEGACIÓN
       appBar: const AppBarWidget(
-        text: 'Lista de chequeo para trabajo en alturas',
+        text: 'Autorización y ejecución de trabajos',
         backgroundColor: proElectricosBlue,
         height: 60,
       ),
@@ -108,8 +111,41 @@ class _FormularioUnoPage extends State<FormularioUno> {
                 // Validate will return true if the form is valid, or false if
                 // the form is invalid.
                 if (_formKey.currentState!.validate()) {
-                  print("Completed");
                   //EN ESTA PARTE VA LO QUÉ PASA CUANDO TERMINA EL FORMULARIO
+                  generateForm1PDF(
+                      "jobs/job${widget.jobNumber}/formulario1.pdf",
+                      "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}",
+                      empresa.text,
+                      municipio.text,
+                      cliente.text,
+                      jornada.text,
+                      vehiculo.text,
+                      distrito.text,
+                      direccion.text,
+                      no.text,
+                      horaInicio.text,
+                      horaFin.text,
+                      descargo.text,
+                      incidencia.text,
+                      nic.text,
+                      aviso.text,
+                      numero.text,
+                      circuito.text,
+                      mt.text,
+                      ct.text,
+                      tension.text,
+                      supervisor.text,
+                      celSupervisor.text,
+                      agenteDescargo.text,
+                      celAgenteDescargo.text,
+                      nombre.text,
+                      cedula.text,
+                      cargo.text,
+                      trabajoRealizado.text,
+                      preservacion,
+                      material.text,
+                      cantidad.text,
+                      nuevo.text);
                   //Se envia a Firebase y a GoogleSheets
                   var data =
                       FirebaseFirestore.instance.collection("formulario_1");
@@ -194,11 +230,20 @@ class _FormularioUnoPage extends State<FormularioUno> {
                   };
                   //Función que añadirá la data al sheets
                   await FormSheets.insertar([dataForm1]);
-                  //LLeva al menu
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext context) =>
-                          const MenuOptionsScreen()));
+                  //Enviamos un mensaje que le indique al ususario que el formulario
+                  //ha sido llenado exitosamente
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                        content: Text('¡Formulario llenado con éxito!')),
+                  );
+                  //LLeva al menu (Para llevar el menu es necesario devolverse, no crear un menu nuevo)
+                  // Therefore, se debe usar pop, not push.
+                  // Navigator.of(context).push(MaterialPageRoute(
+                  //     builder: (BuildContext context) =>
+                  //         const MenuOptionsScreen()));
+                  Navigator.pop(context);
                   // Process data.
+
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Rellene todos los campos')),
@@ -305,9 +350,10 @@ class _FormularioUnoPage extends State<FormularioUno> {
         Step(
           state: currentStep > 4 ? StepState.complete : StepState.indexed,
           isActive: currentStep >= 4,
-          title: const Text("Firmas"),
-          content: Align(
-            child: Container(),
+          title: const Text("Firma del supervisor"),
+          content: const Align(
+            child: MyButton("Firmar", "supervisor_signature",
+                Icon(Icons.feed, size: 0, color: Colors.black)),
             alignment: Alignment.center,
           ),
         ),

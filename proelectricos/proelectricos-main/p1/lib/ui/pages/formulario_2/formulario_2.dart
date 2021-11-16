@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:p1/common/constants.dart';
 import 'package:p1/domain/controller/ControllersForm3/controller_form2.dart';
-import 'package:p1/domain/pdf/pdf_generation.dart';
+import 'package:p1/domain/pdf/pdf_generation2.dart';
 import 'package:p1/ui/pages/formulario_2/components/partes/parte1_form2.dart';
 import 'package:p1/ui/pages/formulario_2/components/partes/parte2_form2.dart';
+import 'package:p1/ui/pages/sheets/form_2_sheet.dart';
+import 'package:p1/ui/pages/sheets/sheet%20connection/sheets_connection_2.dart';
 import 'package:p1/ui/widgetReutilizables/Campos/campos_formularios.dart';
 import 'package:p1/ui/widgetReutilizables/app_bar.dart';
 import 'package:p1/ui/widgetReutilizables/tablas_form.dart';
+import 'package:p1/ui/widgets/menu_general/perfilUsuario/signature_pad.dart';
 
 class FormularioDos extends StatefulWidget {
-  const FormularioDos({Key? key}) : super(key: key);
+  final int jobNumber; // Representa a que trabajo pertenece este formulario.
+  const FormularioDos({Key? key, required this.jobNumber}) : super(key: key);
   @override
   _FormularioDosPage createState() => _FormularioDosPage();
 }
@@ -33,22 +37,6 @@ class _FormularioDosPage extends State<FormularioDos> {
   final TextEditingController arl = TextEditingController();
   final TextEditingController eps = TextEditingController();
   final TextEditingController cargo = TextEditingController();
-  //De la parte 3 a la parte 13
-  //Vectores para booleanos
-  //Llamar al controlador
-  //ControllerForm2 C = Get.find<ControllerForm2>();
-  //Son los vectores de booleanos para las tablas
-  //C.valorswparte3 tiene valores de la tabla 3
-  //C.valorswparte4
-  //C.valorswparte5
-  //C.valorswparte6
-  //C.valorswparte7
-  //C.valorswparte8
-  //C.valorswparte9
-  //C.valorswparte10
-  //C.valorswparte11
-  //C.valorswparte12
-  //C.valorswparte13
 
   @override
   void initState() {
@@ -102,20 +90,138 @@ class _FormularioDosPage extends State<FormularioDos> {
                 if (_formKey.currentState!.validate()) {
                   //EN ESTA PARTE VA LO QUÉ PASA CUANDO TERMINA EL FORMULARIO
                   generateForm2PDF(
-                      "formulario2.pdf",
+                      "jobs/job${widget.jobNumber}/formulario2.pdf",
                       "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}",
                       nombre.text,
+                      trabajo.text,
                       SingingCharacter.rutinario == character,
                       SingingCharacter.noRutinario == character,
                       SingingCharacter1.tAltura == character1,
                       SingingCharacter1.tElectrico == character1,
-                      trabajo.text,
                       nombreapellidos.text,
-                      cargo.text,
                       cedula.text,
                       arl.text,
                       eps.text,
+                      cargo.text,
                       Get.find<ControllerForm2>());
+                  //Excel
+                  var arr3 =
+                      List.filled(C.valorswparte3.length, '', growable: false);
+                  var arr4 =
+                      List.filled(C.valorswparte4.length, '', growable: false);
+                  var arr5 =
+                      List.filled(C.valorswparte5.length, '', growable: false);
+                  var arr6 =
+                      List.filled(C.valorswparte6.length, '', growable: false);
+                  var arr7 =
+                      List.filled(C.valorswparte7.length, '', growable: false);
+                  var arr8 =
+                      List.filled(C.valorswparte8.length, '', growable: false);
+                  var arr9 =
+                      List.filled(C.valorswparte9.length, '', growable: false);
+                  var arr10 =
+                      List.filled(C.valorswparte10.length, '', growable: false);
+                  var arr11 =
+                      List.filled(C.valorswparte11.length, '', growable: false);
+                  var arr12 =
+                      List.filled(C.valorswparte12.length, '', growable: false);
+                  var arr13 =
+                      List.filled(C.valorswparte13.length, '', growable: false);
+
+                  createArray(C.valorswparte3, arr3);
+                  createArray(C.valorswparte4, arr4);
+                  createArray(C.valorswparte5, arr5);
+                  createArray(C.valorswparte6, arr6);
+                  createArray(C.valorswparte7, arr7);
+                  createArray(C.valorswparte8, arr8);
+                  createArray(C.valorswparte9, arr9);
+                  createArray(C.valorswparte10, arr10);
+                  createArray(C.valorswparte11, arr11);
+                  createArray(C.valorswparte12, arr12);
+                  createArray(C.valorswparte13, arr13);
+
+                  String rut;
+                  if (character == SingingCharacter.rutinario) {
+                    rut = "Rutinario";
+                  } else {
+                    rut = "No Rutinario";
+                  }
+                  String elect;
+                  if (character1 == SingingCharacter1.tElectrico) {
+                    elect = "Trabajo eléctrico";
+                  } else {
+                    elect = "Trabajo en alturas";
+                  }
+
+                  final dataForm2 = {
+                    Form2Fields.fecha: pickedDate.toString(),
+                    Form2Fields.nombre: nombre.text.trim(),
+                    Form2Fields.trabajo: trabajo.text.trim(),
+                    Form2Fields.tRutinario: rut,
+                    Form2Fields.tElectrico: elect,
+                    Form2Fields.nombreapellidos: nombreapellidos.text.trim(),
+                    Form2Fields.cedula: cedula.text.trim(),
+                    Form2Fields.arl: arl.text.trim(),
+                    Form2Fields.eps: eps.text.trim(),
+                    Form2Fields.cargo: cargo.text.trim(),
+                    Form2Fields.vec3_1: arr3[0],
+                    Form2Fields.vec3_2: arr3[1],
+                    Form2Fields.vec3_3: arr3[2],
+                    Form2Fields.vec3_4: arr3[3],
+                    Form2Fields.vec4_1: arr4[0],
+                    Form2Fields.vec4_2: arr4[1],
+                    Form2Fields.vec4_3: arr4[2],
+                    Form2Fields.vec4_4: arr4[3],
+                    Form2Fields.vec4_5: arr4[4],
+                    Form2Fields.vec4_6: arr4[5],
+                    Form2Fields.vec4_7: arr4[6],
+                    Form2Fields.vec5_1: arr5[0],
+                    Form2Fields.vec5_2: arr5[1],
+                    Form2Fields.vec5_3: arr5[2],
+                    Form2Fields.vec5_4: arr5[3],
+                    Form2Fields.vec5_5: arr5[4],
+                    Form2Fields.vec5_6: arr5[5],
+                    Form2Fields.vec5_7: arr5[6],
+                    Form2Fields.vec5_8: arr5[7],
+                    Form2Fields.vec6_1: arr6[0],
+                    Form2Fields.vec6_2: arr6[1],
+                    Form2Fields.vec6_3: arr6[2],
+                    Form2Fields.vec7_1: arr7[0],
+                    Form2Fields.vec7_2: arr7[1],
+                    Form2Fields.vec7_3: arr7[2],
+                    Form2Fields.vec7_4: arr7[3],
+                    Form2Fields.vec7_5: arr7[4],
+                    Form2Fields.vec7_6: arr7[5],
+                    Form2Fields.vec7_7: arr7[6],
+                    Form2Fields.vec8_1: arr8[0],
+                    Form2Fields.vec8_2: arr8[1],
+                    Form2Fields.vec9_1: arr9[0],
+                    Form2Fields.vec9_2: arr9[1],
+                    Form2Fields.vec10_1: arr10[0],
+                    Form2Fields.vec10_2: arr10[1],
+                    Form2Fields.vec10_3: arr10[2],
+                    Form2Fields.vec10_4: arr10[3],
+                    Form2Fields.vec10_5: arr10[4],
+                    Form2Fields.vec11_1: arr11[0],
+                    Form2Fields.vec11_2: arr11[1],
+                    Form2Fields.vec12_1: arr12[0],
+                    Form2Fields.vec12_2: arr12[1],
+                    Form2Fields.vec12_3: arr12[2],
+                    Form2Fields.vec12_4: arr12[3],
+                    Form2Fields.vec12_5: arr12[4],
+                    Form2Fields.vec13_1: arr13[0],
+                    Form2Fields.vec13_2: arr13[1],
+                    Form2Fields.vec13_3: arr13[2]
+                  };
+                  //Llamamos a la función .insertar() para que inserte la info en el sheets
+                  await FormSheets2.insertar([dataForm2]);
+                  //Enviamos un mensaje que le indique al ususario que el formulario
+                  //ha sido llenado exitosamente
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                        content: Text('¡Formulario llenado con éxito!')),
+                  );
+                  Navigator.pop(context);
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Rellene todos los campos')),
@@ -329,11 +435,22 @@ class _FormularioDosPage extends State<FormularioDos> {
         Step(
           state: currentStep > 13 ? StepState.complete : StepState.indexed,
           isActive: currentStep >= 13,
-          title: const Text("Firmas"),
-          content: Align(
-            child: Container(),
+          title: const Text("Firma del supervisor"),
+          content: const Align(
+            child: MyButton("Firmar", "supervisor_signature",
+                Icon(Icons.feed, size: 0, color: Colors.black)),
             alignment: Alignment.center,
           ),
         ),
       ];
+}
+
+createArray(RxList<RxBool> valorsw, List<String> arr) {
+  for (var i = 0; i < valorsw.length; i++) {
+    if (valorsw[i].value == true) {
+      arr[i] = 'Sí';
+    } else {
+      arr[i] = 'No';
+    }
+  }
 }

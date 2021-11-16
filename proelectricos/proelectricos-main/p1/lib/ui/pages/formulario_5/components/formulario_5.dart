@@ -2,14 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:p1/common/constants.dart';
 import 'package:p1/domain/controller/ControllersForm3/controller_form5.dart';
+import 'package:p1/domain/pdf/pdf_generation5.dart';
 import 'package:p1/ui/pages/formulario_5/components/partes/parte1_form5.dart';
 import 'package:p1/ui/pages/formulario_5/components/partes/parte7_form5.dart';
 import 'package:p1/ui/widgetReutilizables/Campos/campos_formularios.dart';
 import 'package:p1/ui/widgetReutilizables/app_bar.dart';
 import 'package:p1/ui/widgetReutilizables/tablas_form.dart';
+import 'package:p1/ui/widgets/menu_general/perfilUsuario/signature_pad.dart';
+import 'package:p1/ui/pages/sheets/form_5_sheet.dart';
+import 'package:p1/ui/pages/sheets/sheet%20connection/sheets_connection_5.dart';
 
 class FormularioCinco extends StatefulWidget {
-  const FormularioCinco({Key? key}) : super(key: key);
+  final int jobNumber; // Representa a que trabajo pertenece este formulario.
+  const FormularioCinco({Key? key, required this.jobNumber}) : super(key: key);
   @override
   _FormularioCincoPage createState() => _FormularioCincoPage();
 }
@@ -94,6 +99,170 @@ class _FormularioCincoPage extends State<FormularioCinco> {
                 if (_formKey.currentState!.validate()) {
                   print("Completed");
                   //EN ESTA PARTE VA LO QUÉ PASA CUANDO TERMINA EL FORMULARIO
+                  generateForm5PDF(
+                      "jobs/job${widget.jobNumber}/formulario5.pdf",
+                      "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}",
+                      placa.text,
+                      SingingCharacter.grua == character,
+                      SingingCharacter1.si == character1,
+                      SingingCharacter2.yes == character2,
+                      certDiel.text,
+                      certIz.text,
+                      kilometraje.text,
+                      horometro.text,
+                      Get.find<ControllerForm5>());
+
+                  var arr2 =
+                      List.filled(C.valorswparte2.length, '', growable: false);
+                  for (var i = 0; i < C.valorswparte2.length; i++) {
+                    if (C.valorswparte2[i].value == true) {
+                      arr2[i] = 'Sí';
+                    } else {
+                      arr2[i] = 'No';
+                    }
+                  }
+
+                  var arr3 =
+                      List.filled(C.valorswparte3.length, '', growable: false);
+                  for (var i = 0; i < C.valorswparte3.length; i++) {
+                    if (C.valorswparte3[i].value == true) {
+                      arr3[i] = 'Sí';
+                    } else {
+                      arr3[i] = 'No';
+                    }
+                  }
+
+                  var arr4 =
+                      List.filled(C.valorswparte4.length, '', growable: false);
+                  for (var i = 0; i < C.valorswparte4.length; i++) {
+                    if (C.valorswparte4[i].value == true) {
+                      arr4[i] = 'Sí';
+                    } else {
+                      arr4[i] = 'No';
+                    }
+                  }
+
+                  var arr5 =
+                      List.filled(C.valorswparte5.length, '', growable: false);
+                  for (var i = 0; i < C.valorswparte5.length; i++) {
+                    if (C.valorswparte5[i].value == true) {
+                      arr5[i] = 'Sí';
+                    } else {
+                      arr5[i] = 'No';
+                    }
+                  }
+
+                  var arr6 =
+                      List.filled(C.valorswparte6.length, '', growable: false);
+                  for (var i = 0; i < C.valorswparte6.length; i++) {
+                    if (C.valorswparte6[i].value == true) {
+                      arr6[i] = 'Sí';
+                    } else {
+                      arr6[i] = 'No';
+                    }
+                  }
+
+                  String veh;
+                  if (character == SingingCharacter.grua) {
+                    veh = "Grua";
+                  } else {
+                    veh = "Canasta";
+                  }
+                  String tMeca;
+                  if (character1 == SingingCharacter1.si) {
+                    tMeca = "Sí";
+                  } else {
+                    tMeca = "No";
+                  }
+                  String soat;
+                  if (character2 == SingingCharacter2.yes) {
+                    soat = "Sí";
+                  } else {
+                    soat = "No";
+                  }
+
+                  final dataForm5 = {
+                    form5Fields.fecha: pickedDate.toString(),
+                    form5Fields.character: veh,
+                    form5Fields.character1: tMeca,
+                    form5Fields.character2: soat,
+                    form5Fields.placa: placa.text.toString(),
+                    form5Fields.certDiel: certDiel.text.toString(),
+                    form5Fields.certIz: certIz.text.toString(),
+                    form5Fields.vec2_1: arr2[0],
+                    form5Fields.vec2_2: arr2[1],
+                    form5Fields.vec2_3: arr2[2],
+                    form5Fields.vec2_4: arr2[3],
+                    form5Fields.vec2_5: arr2[4],
+                    form5Fields.vec2_6: arr2[5],
+                    form5Fields.vec2_7: arr2[6],
+                    form5Fields.vec2_8: arr2[7],
+                    form5Fields.vec2_9: arr2[8],
+                    form5Fields.vec3_1: arr3[0],
+                    form5Fields.vec3_2: arr3[1],
+                    form5Fields.vec3_3: arr3[2],
+                    form5Fields.vec3_4: arr3[3],
+                    form5Fields.vec3_5: arr3[4],
+                    form5Fields.vec3_6: arr3[5],
+                    form5Fields.vec3_7: arr3[6],
+                    form5Fields.vec3_8: arr3[7],
+                    form5Fields.vec3_9: arr3[8],
+                    form5Fields.vec3_10: arr3[9],
+                    form5Fields.vec3_11: arr3[10],
+                    form5Fields.vec3_12: arr3[11],
+                    form5Fields.vec3_13: arr3[12],
+                    form5Fields.vec3_14: arr3[13],
+                    form5Fields.vec3_15: arr3[14],
+                    form5Fields.vec3_16: arr3[15],
+                    form5Fields.vec4_1: arr4[0],
+                    form5Fields.vec4_2: arr4[1],
+                    form5Fields.vec4_3: arr4[2],
+                    form5Fields.vec4_4: arr4[3],
+                    form5Fields.vec4_5: arr4[4],
+                    form5Fields.vec4_6: arr4[5],
+                    form5Fields.vec4_7: arr4[6],
+                    form5Fields.vec4_8: arr4[7],
+                    form5Fields.vec4_9: arr4[8],
+                    form5Fields.vec4_10: arr4[9],
+                    form5Fields.vec4_11: arr4[10],
+                    form5Fields.vec4_12: arr4[11],
+                    form5Fields.vec4_13: arr4[12],
+                    form5Fields.vec5_1: arr5[0],
+                    form5Fields.vec5_2: arr5[1],
+                    form5Fields.vec5_3: arr5[2],
+                    form5Fields.vec5_4: arr5[3],
+                    form5Fields.vec5_5: arr5[4],
+                    form5Fields.vec5_6: arr5[5],
+                    form5Fields.vec5_7: arr5[6],
+                    form5Fields.vec5_8: arr5[7],
+                    form5Fields.vec5_9: arr5[8],
+                    form5Fields.vec5_10: arr5[9],
+                    form5Fields.vec5_11: arr5[10],
+                    form5Fields.vec5_12: arr5[11],
+                    form5Fields.vec5_13: arr5[12],
+                    form5Fields.vec5_14: arr5[13],
+                    form5Fields.vec5_15: arr5[14],
+                    form5Fields.vec5_16: arr5[15],
+                    form5Fields.vec6_1: arr6[0],
+                    form5Fields.vec6_2: arr6[1],
+                    form5Fields.vec6_3: arr6[2],
+                    form5Fields.vec6_4: arr6[3],
+                    form5Fields.vec6_5: arr6[4],
+                    form5Fields.vec6_6: arr6[5],
+                    form5Fields.vec6_7: arr6[6],
+                    form5Fields.kilometraje: kilometraje.text.toString(),
+                    form5Fields.horometro: horometro.text.toString()
+                  };
+
+                  //Llamamos a la función .insertar() para que inserte la info en el sheets
+                  await FormSheets5.insertar([dataForm5]);
+                  //Enviamos un mensaje que le indique al ususario que el formulario
+                  //ha sido llenado exitosamente
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                        content: Text('¡Formulario llenado con éxito!')),
+                  );
+                  Navigator.pop(context);
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Rellene todos los campos')),
@@ -230,9 +399,10 @@ class _FormularioCincoPage extends State<FormularioCinco> {
         Step(
           state: currentStep > 7 ? StepState.complete : StepState.indexed,
           isActive: currentStep >= 7,
-          title: const Text("Firmas"),
-          content: Align(
-            child: Container(),
+          title: const Text("Firma del supervisor"),
+          content: const Align(
+            child: MyButton("Firmar", "supervisor_signature",
+                Icon(Icons.feed, size: 0, color: Colors.black)),
             alignment: Alignment.center,
           ),
         ),

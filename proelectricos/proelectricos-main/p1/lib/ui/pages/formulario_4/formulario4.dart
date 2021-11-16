@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:p1/domain/controller/ControllersForm3/controller_form4.dart';
+import 'package:p1/domain/pdf/pdf_generation4.dart';
 import 'package:p1/ui/widgetReutilizables/Campos/campos_formularios.dart';
 import 'package:p1/ui/widgetReutilizables/app_bar.dart';
 import 'package:p1/ui/widgetReutilizables/tablas_form.dart';
 import 'package:p1/ui/pages/formulario_4/components/partes/parte1_form4.dart';
 import 'package:p1/ui/pages/formulario_4/components/partes/parte2_form4.dart';
 import 'package:p1/ui/pages/formulario_4/components/partes/parte3_form4.dart';
+import 'package:p1/ui/widgets/menu_general/perfilUsuario/signature_pad.dart';
+import 'package:p1/ui/pages/sheets/form_4_sheet.dart';
+import 'package:p1/ui/pages/sheets/sheet%20connection/sheets_connection_4.dart';
 
 class FormularioCuatro extends StatefulWidget {
-  const FormularioCuatro({Key? key}) : super(key: key);
+  final int jobNumber; // Representa a que trabajo pertenece este formulario.
+  const FormularioCuatro({Key? key, required this.jobNumber}) : super(key: key);
   @override
   _FormularioCuatroPage createState() => _FormularioCuatroPage();
 }
@@ -33,6 +38,7 @@ class _FormularioCuatroPage extends State<FormularioCuatro> {
   final bool desenergizado = true;
   final bool energizado = false;
   //Parte4 form 4
+
   //Vectores para booleanos
   //Llamar al controlador
   //ControllerForm4 C = Get.find<ControllerForm4>();
@@ -91,6 +97,86 @@ class _FormularioCuatroPage extends State<FormularioCuatro> {
                 if (_formKey.currentState!.validate()) {
                   print("Completed");
                   //EN ESTA PARTE VA LO QUÉ PASA CUANDO TERMINA EL FORMULARIO
+                  generateForm4PDF(
+                      "jobs/job${widget.jobNumber}/formulario4.pdf",
+                      "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}",
+                      lider.text,
+                      ubicacion.text,
+                      contratista.text,
+                      nombreapellidos.text,
+                      cedula.text,
+                      arl.text,
+                      eps.text,
+                      cargo.text,
+                      trabajoRealizado.text,
+                      desenergizado,
+                      energizado,
+                      Get.find<ControllerForm4>());
+
+                  //Data que se envia al sheets
+                  var arr4 =
+                      List.filled(C.valorswparte4.length, '', growable: false);
+                  for (var i = 0; i < C.valorswparte4.length; i++) {
+                    if (C.valorswparte4[i].value == true) {
+                      arr4[i] = 'Sí';
+                    } else {
+                      arr4[i] = 'No';
+                    }
+                  }
+
+                  final dataForm4 = {
+                    form4Fields.fecha: pickedDate.toString(),
+                    form4Fields.lider: lider.text.toString(),
+                    form4Fields.ubicacion: ubicacion.text.toString(),
+                    form4Fields.contratista: contratista.text.toString(),
+                    form4Fields.nombreapellidos:
+                        nombreapellidos.text.toString(),
+                    form4Fields.cedula: cedula.text.toString(),
+                    form4Fields.arl: arl.text.toString(),
+                    form4Fields.eps: eps.text.toString(),
+                    form4Fields.cargo: cargo.text.toString(),
+                    form4Fields.trabajoRealizado:
+                        trabajoRealizado.text.toString(),
+                    form4Fields.desenergizado: desenergizado.toString(),
+                    form4Fields.energizado: energizado.toString(),
+                    form4Fields.vect4_1: arr4[0],
+                    form4Fields.vect4_2: arr4[1],
+                    form4Fields.vect4_3: arr4[2],
+                    form4Fields.vect4_4: arr4[3],
+                    form4Fields.vect4_5: arr4[4],
+                    form4Fields.vect4_6: arr4[5],
+                    form4Fields.vect4_7: arr4[6],
+                    form4Fields.vect4_8: arr4[7],
+                    form4Fields.vect4_9: arr4[8],
+                    form4Fields.vect4_10: arr4[9],
+                    form4Fields.vect4_11: arr4[10],
+                    form4Fields.vect4_12: arr4[11],
+                    form4Fields.vect4_13: arr4[12],
+                    form4Fields.vect4_14: arr4[13],
+                    form4Fields.vect4_15: arr4[14],
+                    form4Fields.vect4_16: arr4[15],
+                    form4Fields.vect4_17: arr4[16],
+                    form4Fields.vect4_18: arr4[17],
+                    form4Fields.vect4_19: arr4[18],
+                    form4Fields.vect4_20: arr4[19],
+                    form4Fields.vect4_21: arr4[20],
+                    form4Fields.vect4_22: arr4[21],
+                    form4Fields.vect4_23: arr4[22],
+                    form4Fields.vect4_24: arr4[23],
+                    form4Fields.vect4_25: arr4[24],
+                    form4Fields.vect4_26: arr4[25],
+                    form4Fields.vect4_27: arr4[26],
+                  };
+
+                  //Llamamos a la función .insertar() para que inserte la info en el sheets
+                  await FormSheets4.insertar([dataForm4]);
+                  //Enviamos un mensaje que le indique al ususario que el formulario
+                  //ha sido llenado exitosamente
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                        content: Text('¡Formulario llenado con éxito!')),
+                  );
+                  Navigator.pop(context);
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Rellene todos los campos')),
@@ -187,9 +273,10 @@ class _FormularioCuatroPage extends State<FormularioCuatro> {
         Step(
           state: currentStep > 4 ? StepState.complete : StepState.indexed,
           isActive: currentStep >= 4,
-          title: const Text("Firmas"),
-          content: Align(
-            child: Container(),
+          title: const Text("Firma del supervisor"),
+          content: const Align(
+            child: MyButton("Firmar", "supervisor_signature",
+                Icon(Icons.feed, size: 0, color: Colors.black)),
             alignment: Alignment.center,
           ),
         ),
